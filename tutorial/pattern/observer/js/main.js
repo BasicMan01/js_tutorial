@@ -42,10 +42,13 @@ class Motor extends Observable {
 
 class Observer {
 	constructor() {
-	}
+		if (new.target === Observer) {
+			throw new TypeError("Cannot construct Abstract instances directly");
+		}
 
-	update() {
-		console.error('implement update()');
+		if (typeof this.update !== 'function') {
+			throw new TypeError('update not implemented in class ' + this.constructor.name);
+		}
 	}
 }
 
