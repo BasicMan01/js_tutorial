@@ -1,0 +1,2 @@
+.workerItem { border: 1px solid black; font-size: 32pt; margin: 10px; text-align: center; width: 250px; }
+.workerItem input { background-color: red; border: 1px solid grey; cursor: pointer; float: right; }

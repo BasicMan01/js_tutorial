@@ -1,10 +1,13 @@
+* { box-sizing: border-box; }
+
 html, body { margin: 15px; padding: 0; }
 body { font-family: Arial; font-size: 13px; line-height: 1.5; }
+
+.clear { clear: both; }
+.floatLeft { float: left; }
+.floatRight {float: right; }
 
 .formElements input,
 .formElements select { width: 200px; }
 
 .formElements { margin: 10px; }
-
-.workerItem { border: 1px solid black; font-size: 32pt; margin: 10px; text-align: center; width: 250px; }
-.workerItem input { background-color: red; border: 1px solid grey; cursor: pointer; float: right; }

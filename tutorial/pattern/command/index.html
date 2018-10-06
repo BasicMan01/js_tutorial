@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+		<link rel="stylesheet" type="text/css" href="../../../resources/css/global.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+
+	<body>
+		<h1>Command Pattern</h1>
+
+		<div>
+			<div class="floatLeft">
+				<div class="formElements">
+					<div>Change object:</div>
+					<select id="objects">
+						<option value="object1">Object 1</option>
+						<option value="object2">Object 2</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="floatLeft">
+				<div class="formElements">
+					<div>Position X (left):</div>
+					<input type="text" id="positionX" value="0">
+				</div>
+
+				<div class="formElements">
+					<div>Position Y (top):</div>
+					<input type="text" id="positionY" value="0">
+				</div>
+
+				<div class="formElements">
+					<input type="button" id="executePosition" value="Set Position">
+				</div>
+			</div>
+
+			<div class="floatLeft">
+				<div class="formElements">
+					<div>Background color:</div>
+					<input type="text" id="backgroundColor" value="">
+				</div>
+
+				<div class="formElements">
+					<input type="button" id="executeBackgroundColor" value="Set Backgorund Color">
+				</div>
+			</div>
+
+			<div class="floatLeft">
+				<div class="formElements">
+					<input type="button" id="redo" value="Redo">
+				</div>
+
+				<div class="formElements">
+					<input type="button" id="undo" value="Undo">
+				</div>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+
+		<div>
+			<div class="container floatLeft">
+				<div class="object" id="object1"></div>
+				<div class="object" id="object2"></div>
+			</div>
+
+			<div class="history floatLeft" id="history">
+			</div>
+
+			<div class="clear"></div>
+		</div>
+
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>

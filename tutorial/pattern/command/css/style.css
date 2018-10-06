@@ -1,0 +1,5 @@
+.container { border: 1px solid black; height: 600px; position: relative; width: 1200px; }
+.container .object { border: 1px solid black; height: 20px; left: 0; position: absolute; top: 0; width: 20px; }
+
+.history { border: 1px solid black; height: 600px; margin-left: 15px; width: 200px; }
+.history .redo { color: #999999; }
