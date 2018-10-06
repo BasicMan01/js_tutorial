@@ -1,4 +1,4 @@
-html, body { height: 100%; margin: 15px; padding: 0;  width: 100%; }
+html, body { margin: 15px; padding: 0; }
 body { font-family: Arial; font-size: 13px; line-height: 1.5; }
 
 .formElements input,
