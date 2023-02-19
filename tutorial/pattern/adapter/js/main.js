@@ -1,4 +1,4 @@
-import {AdapterCar, AdapterRocket} from './adapter.js';
+import { AdapterCar, AdapterRocket } from './adapter.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	let adapter = null;

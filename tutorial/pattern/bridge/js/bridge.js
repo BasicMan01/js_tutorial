@@ -1,7 +1,7 @@
 class Shape {
 	constructor(canvas, color) {
 		if (new.target === Color) {
-			throw new TypeError("Cannot construct Abstract instances directly");
+			throw new TypeError('Cannot construct Abstract instances directly');
 		}
 
 		if (typeof this.draw !== 'function') {
@@ -9,7 +9,7 @@ class Shape {
 		}
 
 		this.color = color;
-		this.context = canvas.getContext("2d");
+		this.context = canvas.getContext('2d');
 		this.context.clearRect(0, 0, canvas.width, canvas.height);
 	}
 }
@@ -47,7 +47,7 @@ class Rectangle extends Shape {
 class Color {
 	constructor() {
 		if (new.target === Color) {
-			throw new TypeError("Cannot construct Abstract instances directly");
+			throw new TypeError('Cannot construct Abstract instances directly');
 		}
 
 		if (typeof this.getHex !== 'function') {

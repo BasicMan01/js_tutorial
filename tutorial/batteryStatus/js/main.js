@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
 	function calculateBatteryTime(value) {
 		if (value == Infinity || value <= 0) {
 			return 'N.A.';
 		}
 
-		let total = parseInt(value / 60);
-		let minutes = total % 60;
-		let hours = (total - minutes) / 60;
+		const total = parseInt(value / 60);
+		const minutes = total % 60;
+		const hours = (total - minutes) / 60;
 
 		return hours + ':' + minutes;
 	}
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-    navigator.getBattery().then(battery => {
+	navigator.getBattery().then(battery => {
 		updateBatteryStatus(battery);
 
 		battery.onchargingchange = function () {

@@ -1,7 +1,7 @@
-import {Container, JsonStrategy, XmlStrategy, CsvStrategy} from './strategy.js';
+import { Container, JsonStrategy, XmlStrategy, CsvStrategy } from './strategy.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-	let container = new Container();
+	const container = new Container();
 
 	container.addPair('name', 'Mueller');
 	container.addPair('street', 'Applestreet 24');

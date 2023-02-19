@@ -1,7 +1,7 @@
-import {History, BackgroundColorCommand, PositionCommand} from './command.js';
+import { History, BackgroundColorCommand, PositionCommand } from './command.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-	let history = new History();
+	const history = new History();
 
 	function showHistory() {
 		let output = '';
@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 	document.getElementById('executePosition').addEventListener('click', () => {
-		let id = document.getElementById('objects').value;
-		let obj = document.getElementById(id);
-		let pos = {
+		const id = document.getElementById('objects').value;
+		const obj = document.getElementById(id);
+		const pos = {
 			'x': document.getElementById('positionX').value + 'px',
 			'y': document.getElementById('positionY').value + 'px'
 		};
@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 
 	document.getElementById('executeBackgroundColor').addEventListener('click', () => {
-		let id = document.getElementById('objects').value;
-		let obj = document.getElementById(id);
-		let color = document.getElementById('backgroundColor').value;
+		const id = document.getElementById('objects').value;
+		const obj = document.getElementById(id);
+		const color = document.getElementById('backgroundColor').value;
 
 		history.execute(new BackgroundColorCommand(obj, color));
 		showHistory();

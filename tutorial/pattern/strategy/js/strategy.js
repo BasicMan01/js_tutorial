@@ -1,7 +1,7 @@
 class Strategy {
 	constructor() {
 		if (new.target === Strategy) {
-			throw new TypeError("Cannot construct Abstract instances directly");
+			throw new TypeError('Cannot construct Abstract instances directly');
 		}
 
 		if (typeof this.output !== 'function') {
@@ -23,15 +23,13 @@ class JsonStrategy extends Strategy {
 class XmlStrategy extends Strategy {
 	constructor() {
 		super();
-
-		this.serializer = new XMLSerializer();
 	}
 
 	output(data) {
 		let output = '<xml><data>';
 
-		for (let key in data) {
-			if (data.hasOwnProperty(key)) {
+		for (const key in data) {
+			if (Object.prototype.hasOwnProperty.call(data, key)) {
 				output += '<' + key + '>' + data[key] + '</' + key + '>';
 			}
 		}
@@ -48,10 +46,10 @@ class CsvStrategy extends Strategy {
 	}
 
 	output(data) {
-		let output = [];
+		const output = [];
 
-		for (let key in data) {
-			if (data.hasOwnProperty(key)) {
+		for (const key in data) {
+			if (Object.prototype.hasOwnProperty.call(data, key)) {
 				output.push(key + '=' + data[key]);
 			}
 		}
@@ -61,22 +59,25 @@ class CsvStrategy extends Strategy {
 }
 
 class Container {
+	#data;
+	#strategy;
+
 	constructor() {
-		this.data = {};
-		this.strategy = null;
+		this.#data = {};
+		this.#strategy = null;
 	}
 
 	setStrategy(strategy) {
-		this.strategy = strategy;
+		this.#strategy = strategy;
 	}
 
 	addPair(key, value) {
-		this.data[key] = value;
+		this.#data[key] = value;
 	}
 
 	show() {
-		if (this.strategy !== null) {
-			this.strategy.output(this.data);
+		if (this.#strategy !== null) {
+			this.#strategy.output(this.#data);
 		}
 	}
 }
@@ -86,4 +87,4 @@ export {
 	JsonStrategy,
 	XmlStrategy,
 	CsvStrategy
-}
+};

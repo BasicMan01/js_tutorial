@@ -11,7 +11,7 @@ class History {
 
 	redo() {
 		if (this.redos.length) {
-			let cmd = this.redos.pop();
+			const cmd = this.redos.pop();
 
 			cmd.execute();
 			this.undos.push(cmd);
@@ -20,7 +20,7 @@ class History {
 
 	undo() {
 		if (this.undos.length) {
-			let cmd = this.undos.pop();
+			const cmd = this.undos.pop();
 
 			cmd.undo();
 			this.redos.push(cmd);
@@ -33,7 +33,7 @@ class Command {
 		this.name = '';
 
 		if (new.target === Command) {
-			throw new TypeError("Cannot construct Abstract instances directly");
+			throw new TypeError('Cannot construct Abstract instances directly');
 		}
 
 		if (typeof this.execute !== 'function') {
@@ -47,47 +47,55 @@ class Command {
 }
 
 class PositionCommand extends Command {
+	#obj;
+	#newValue;
+	#oldValue;
+
 	constructor(obj, value) {
 		super();
 
-		this.name = 'change position';
-
-		this.obj = obj;
-		this.newValue = value;
-		this.oldValue = {
-			'x':  this.obj.style.left,
-			'y': this.obj.style.top
+		this.#obj = obj;
+		this.#newValue = value;
+		this.#oldValue = {
+			'x': this.#obj.style.left,
+			'y': this.#obj.style.top
 		};
+
+		this.name = 'change position';
 	}
 
 	execute() {
-		this.obj.style.left = this.newValue.x;
-		this.obj.style.top = this.newValue.y;
+		this.#obj.style.left = this.#newValue.x;
+		this.#obj.style.top = this.#newValue.y;
 	}
 
 	undo() {
-		this.obj.style.left = this.oldValue.x;
-		this.obj.style.top = this.oldValue.y;
+		this.#obj.style.left = this.#oldValue.x;
+		this.#obj.style.top = this.#oldValue.y;
 	}
 }
 
 class BackgroundColorCommand extends Command {
+	#obj;
+	#newValue;
+	#oldValue;
+
 	constructor(obj, value) {
 		super();
 
-		this.name = 'change backgroundColor';
+		this.#obj = obj;
+		this.#newValue = value;
+		this.#oldValue = this.#obj.style.backgroundColor;
 
-		this.obj = obj;
-		this.newValue = value;
-		this.oldValue = this.obj.style.backgroundColor;
+		this.name = 'change backgroundColor';
 	}
 
 	execute() {
-		this.obj.style.backgroundColor = this.newValue;
+		this.#obj.style.backgroundColor = this.#newValue;
 	}
 
 	undo() {
-		this.obj.style.backgroundColor = this.oldValue;
+		this.#obj.style.backgroundColor = this.#oldValue;
 	}
 }
 

@@ -27,7 +27,7 @@ class Car {
 class AbstractAdapter {
 	constructor() {
 		if (new.target === AbstractAdapter) {
-			throw new TypeError("Cannot construct Abstract instances directly");
+			throw new TypeError('Cannot construct Abstract instances directly');
 		}
 
 		if (typeof this.start !== 'function') {

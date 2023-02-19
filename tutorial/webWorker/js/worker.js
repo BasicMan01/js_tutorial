@@ -1,6 +1,7 @@
 onmessage = function(event) {
 	let counter = event.data;
-	let intervalId = setInterval(function() {
+
+	const intervalId = setInterval(function() {
 		if (counter > 0) {
 			counter--;
 			postMessage(counter);

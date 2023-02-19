@@ -1,7 +1,7 @@
-import {Circle, Rectangle, RedColor, GreenColor} from './bridge.js';
+import { Circle, Rectangle, RedColor, GreenColor } from './bridge.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-	let canvas = document.getElementById('canvas');
+	const canvas = document.getElementById('canvas');
 
 	document.getElementById('redCircle').addEventListener('click', () => {
 		new Circle(canvas, new RedColor()).draw();

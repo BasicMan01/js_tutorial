@@ -1,42 +1,42 @@
 class CounterWorker {
-	constructor(workerTimeValue) {
-		let self = this;
+	#id;
+	#webWorker;
 
+	constructor(workerTimeValue) {
 		CounterWorker.instanceCounter++;
 
-		this.id = CounterWorker.instanceCounter;
+		this.#id = CounterWorker.instanceCounter;
 
-		this.webWorker = new Worker('js/worker.js');
-		this.webWorker.customId = this.id;
-		this.webWorker.onmessage = function(event) {
+		this.#webWorker = new Worker('js/worker.js');
+		this.#webWorker.customId = this.#id;
+		this.#webWorker.onmessage = (event) => {
 			if (event.data === 0) {
-				self.removeItem(this.customId);
+				this.removeItem(event.currentTarget.customId);
 			} else {
-				let element = document.querySelector('#workerItem_' + this.customId + ' span');
+				const element = document.querySelector('#workerItem_' + event.currentTarget.customId + ' span');
 				element.innerHTML = event.data;
 			}
 		};
 
 		this.addItem(workerTimeValue);
-		this.webWorker.postMessage(workerTimeValue);
+		this.#webWorker.postMessage(workerTimeValue);
 	}
 
 	addItem(workerTimeValue) {
-		let self = this;
-		let div = document.createElement('div');
-		let span = document.createElement('span');
-		let input = document.createElement('input');
+		const div = document.createElement('div');
+		const span = document.createElement('span');
+		const input = document.createElement('input');
 
 		span.innerHTML = workerTimeValue;
 		input.type = 'button';
 		input.value = 'X';
-		input.onclick = function() {
-			self.webWorker.terminate();
-			self.removeItem(self.id);
+		input.onclick = () => {
+			this.#webWorker.terminate();
+			this.removeItem(this.#id);
 		};
 
 		div.className = 'workerItem';
-		div.id = 'workerItem_' + this.id;
+		div.id = 'workerItem_' + this.#id;
 		div.appendChild(span);
 		div.appendChild(input);
 
@@ -44,7 +44,7 @@ class CounterWorker {
 	}
 
 	removeItem(id) {
-		let element = document.getElementById('workerItem_' + id);
+		const element = document.getElementById('workerItem_' + id);
 
 		element.parentNode.removeChild(element);
 	}
@@ -53,12 +53,12 @@ class CounterWorker {
 CounterWorker.instanceCounter = 0;
 
 
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById('btnCreateWorker').addEventListener('click', function(event) {
-		let workerTimeValue = parseInt(document.getElementById('workerTimeValue').value);
+document.addEventListener('DOMContentLoaded', () => {
+	document.getElementById('btnCreateWorker').addEventListener('click', () => {
+		const workerTimeValue = parseInt(document.getElementById('workerTimeValue').value);
 
 		if (!isNaN(workerTimeValue)) {
-			let counterWorker = new CounterWorker(workerTimeValue);
+			new CounterWorker(workerTimeValue);
 		} else {
 			alert('Insert a number!');
 		}

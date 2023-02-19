@@ -1,38 +1,44 @@
 class Iterator {
+	#counter;
+	#object;
+
 	constructor(object) {
-		this._counter = 0;
-		this._object = object;
+		this.#counter = 0;
+		this.#object = object;
 	}
 
-	 hasNext() {
-		return this._counter < this._object.length;
+	hasNext() {
+		return this.#counter < this.#object.length;
 	}
 
 	next() {
-		return this._object[this._counter++];
+		return this.#object[this.#counter++];
 	}
 
 	reset() {
-		this._counter = 0;
+		this.#counter = 0;
 	}
 }
 
 class ObjectContainer {
+	#container;
+	#it;
+
 	constructor() {
-		this._container = [];
-		this._it = new Iterator(this._container);
+		this.#container = [];
+		this.#it = new Iterator(this.#container);
 	}
 
 	add(object) {
-		this._container.push(object);
+		this.#container.push(object);
 	}
 
 	traverse(callback) {
 		if (typeof callback === 'function') {
-			this._it.reset();
+			this.#it.reset();
 
-			while(this._it.hasNext()) {
-				callback(this._it.next());
+			while(this.#it.hasNext()) {
+				callback(this.#it.next());
 			}
 		}
 	}
